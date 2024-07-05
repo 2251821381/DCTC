@@ -15,7 +15,7 @@
 
 ### DCTC with explicit augmentations 
 
-In additional to the original data, SCCL requires a pair of augmented data for each instance. 
+In additional to the original data, DCTC requires a pair of augmented data for each instance. 
 
 The data format is (text, text1, text2) where text1 and text2 are the column names of augmented pairs. 
  See our NAACL paper for details about the learning objective. 
@@ -36,7 +36,6 @@ python3 main.py \
         --num_classes 8 \
         --text text \
         --label label \
-        --objective SCCL \
         --augtype explicit \
         --temperature 0.5 \
         --eta 10 \
@@ -66,7 +65,6 @@ python3 main.py \
         --num_classes 8 \
         --text text \
         --label label \
-        --objective SCCL \
         --augtype virtual \
         --temperature 0.5 \
         --eta 10 \
