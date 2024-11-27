@@ -1,4 +1,6 @@
 #  the code is https://github.com/2251821381/DCTC/tree/master
+## Mathematical proofs(why DCTC is better )
+<img src="./proof.png" width="96%" />
 ## Parameter analysis of contrastive learning
 
 In this section, we investigate the influence of hyperparameters on the model, including the loss balance factor ($\lambda$) and the temperature coefficient ($\tau$) for contrastive learning. 
