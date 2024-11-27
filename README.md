@@ -18,7 +18,7 @@
 In additional to the original data, DCTC requires a pair of augmented data for each instance. 
 
 The data format is (text, text1, text2) where text1 and text2 are the column names of augmented pairs. 
- See our NAACL paper for details about the learning objective. 
+ See  NAACL paper for details about the learning objective. 
 
 Step-1. download the original datastes from https://github.com/rashadulrakib/short-text-clustering-enhancement/tree/master/data
 
