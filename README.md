@@ -11,7 +11,7 @@ In our experiment, we directly set the value of the temperature coefficient $\ta
 
 ### Loss Balance Factor ($\lambda$)
 
-Additionally, we set different values of $\lambda$ from \{1, 3, 5, 7, 9\}, and the experimental results are shown in **Figure 5(c)** and **Figure 5(d)**. As $\lambda$ increases, although the three datasets show completely different results in terms of ACC and NMI evaluation, the general trend is as follows: 
+Additionally, we set different values of $\lambda$ from \{1, 3, 5, 7, 9\}, and the experimental results are shown . As $\lambda$ increases, although the three datasets show completely different results in terms of ACC and NMI evaluation, the general trend is as follows: 
 
 1. Performance improves with the increase of $\lambda$.
 2. Performance stabilizes after $\lambda$ reaches a certain value.
