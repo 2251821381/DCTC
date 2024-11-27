@@ -1,5 +1,5 @@
 #  the code is https://github.com/2251821381/DCTC/tree/master
-## Influence of Hyperparameters on the Model
+## Parameter analysis of contrastive learning
 
 In this section, we investigate the influence of hyperparameters on the model, including the loss balance factor ($\lambda$) and the temperature coefficient ($\tau$) for contrastive learning. 
 
@@ -16,3 +16,5 @@ Additionally, we set different values of $\lambda$ from \{1, 3, 5, 7, 9\}, and t
 3. Performance decreases when $\lambda$ becomes too large.
 
 This is consistent with our experience: when $\lambda$ is too small, the learning ability of the decoupled-level contrastive learning head is not fully utilized. On the other hand, when $\lambda$ is too large, the ability of cluster-level contrastive learning is inhibited, which reduces the clustering performance.
+<img src=.github/1_1-1.png width=50% />  |  <img src=.github/2_2-1.png width=50% />
+<img src=.github/1_1-1.png width=50% />  |  <img src=.github/2_2-1.png width=50% />
