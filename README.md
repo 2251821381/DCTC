@@ -41,7 +41,9 @@ The target encoder parameters are updated using Exponential Moving Average (EMA)
 
 ```python
 # Update target encoder parameters using EMA
-theta_k = m * theta_k + (1 - m) * theta_q
+$$
+\theta_k(v) \leftarrow m \cdot \theta_k(v) + (1 - m) \cdot \theta_q(v)
+$$
 
 where `m ∈ (0, 1]` is a fixed momentum coefficient during training. We set `m = 0.98` in our experiments.
 
