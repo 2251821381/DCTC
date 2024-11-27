@@ -29,12 +29,13 @@ This is consistent with our experience: when $\lambda$ is too small, the learnin
   <img src="./NMI2.png" width="48%" />
 </div>
 ## More detailed implementation guidelines
-| Configure                          | Value          |
-|------------------------------|-------------|
-|  (Optimizer)               | Adam        |
-|  (Batch size)           | 1024        |
-|  (Learning rate)          | 1e-5   |
-|  (Total training epoch) | 200         |
+
+| Configure                    | Value      |
+|------------------------------|------------|
+| Optimizer                    | Adam       |
+| Batch size                   | 1024       |
+| Learning rate                | 1e-5       |
+| Total training epoch         | 200        |
 
 The parameters of the target encoder are updated by Exponential Moving Average (EMA) of the online encoder. Formally, denoting the parameters of the online and target encoder as `θq(v)` and `θk(v)`, respectively. The target encoder is updated by the following formula:
 
