@@ -45,3 +45,38 @@ $\theta_k(v) \leftarrow m \cdot \theta_k(v) + (1 - m) \cdot \theta_q(v)$
 
 where `m ∈ (0, 1]` is a fixed momentum coefficient during training. We set `m = 0.98` in our experiments.
 
+# The the time complexity of the high-order random walk part:
+
+### **step1: Similarity Graph Construction**
+
+A fully connected similarity graph is constructed where the embeddings of the batch are treated as graph nodes. The edge weights between nodes are computed using a Gaussian kernel similarity function:
+
+![image-20241127170430962](2.assets/image-20241127170430962.png)
+
+Where, $A_{ij}$ is the edge weight between nodes $i$ and $j$. $z_{k,i}$ is the embedding representation of node $i$. $\sigma$ is a hyperparameter controlling the scale of the distance. The similarity graph transforms sample embeddings into a graph structure, enabling the application of random walks. The edge weights represent the similarity between samples, where higher weights indicate greater similarity. Every sample is connected to all others, ensuring global information is captured. The computing pairwise similarities for all nodes requires $O(N^2 \cdot d)$.
+
+### step2:Normalizing the Adjacency Matrix
+
+The adjacency matrix $A$ is normalized to generate a transition matrix $M$: $$M = A D^{-1}$$, Where $D^{-1}$ is the inverse degree matrix, a diagonal matrix where $D_{ii} = \sum_j A_{ij}$. Calculating $D$ requires summing each row of $A$, which takes $O(N^2)$ time for $N$ rows.  $D^{-1}$ is the inverse of the diagonal matrix $D$. Each diagonal entry is simply inverted, which requires $O(N)$. Multiplying $A$ (a dense matrix) with $D^{-1}$ (a diagonal matrix) can be done element-wise, with a complexity of $O(N^2)$.
+
+### step3: Multi-Step Random Walk Probability
+
+The probability distribution $p(t)$at step $t$ is computed recursively using the random walk transition matrix $M$:
+
+![image-20241127171634189](2.assets/image-20241127171634189.png)
+
+$p(0)$ is the initial probability distribution of the random walk, which is usually a one-hot vector for starting from a specific anchor node. $M_t$ is the $t$-th power of the transition matrix $M$.  Initialize Transition Matrix $M$:$M$ is computed as $M = A D^{-1}$, with a complexity of $O(N^2)$.  Recursive Matrix Multiplication: The $t$-step transition matrix $M^t$ is computed recursively: $M^t = M \cdot M \cdot M \cdots \quad (t \text{ multiplications})$ Each matrix multiplication $M \cdot M$ has a complexity of $O(N^3)$ for a dense $N \times N$ matrix.
+
+
+
+### **step4: Generating Pseudo-Target Labels**
+
+Pseudo-target labels $T$ are generated using the multi-step random walk results:
+
+![image-20241127172713811](2.assets/image-20241127172713811.png)
+
+Where, $I$ is the identity matrix, ensuring self-loops are emphasized. $\alpha$ is a balancing parameter controlling the influence of random walks. Purpose: $T$ adjusts relationships between samples to reduce false negatives (within-cluster samples misclassified as negative) and false positives (between-cluster samples misclassified as positive). High-Order Neighbors: By incorporating $M^t$, the pseudo-labels capture high-order neighbor relationships. Constructing $T$ from $M^t$ requires $O(N^2)$, as it involves element-wise matrix operations.
+
+### Total Complexity:
+
+![image-20241127172930397](2.assets/image-20241127172930397.png)
