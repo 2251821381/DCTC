@@ -51,7 +51,7 @@ where `m ∈ (0, 1]` is a fixed momentum coefficient during training. We set `m 
 
 A fully connected similarity graph is constructed where the embeddings of the batch are treated as graph nodes. The edge weights between nodes are computed using a Gaussian kernel similarity function:
 
-![image-20241127170430962](2.assets/image-20241127170430962.png)
+<img src="./1.png" width="50%" />
 
 Where, $A_{ij}$ is the edge weight between nodes $i$ and $j$. $z_{k,i}$ is the embedding representation of node $i$. $\sigma$ is a hyperparameter controlling the scale of the distance. The similarity graph transforms sample embeddings into a graph structure, enabling the application of random walks. The edge weights represent the similarity between samples, where higher weights indicate greater similarity. Every sample is connected to all others, ensuring global information is captured. The computing pairwise similarities for all nodes requires $O(N^2 \cdot d)$.
 
@@ -63,7 +63,7 @@ The adjacency matrix $A$ is normalized to generate a transition matrix $M$: $$M 
 
 The probability distribution $p(t)$at step $t$ is computed recursively using the random walk transition matrix $M$:
 
-![image-20241127171634189](2.assets/image-20241127171634189.png)
+<img src="./2.png" width="50%" />
 
 $p(0)$ is the initial probability distribution of the random walk, which is usually a one-hot vector for starting from a specific anchor node. $M_t$ is the $t$-th power of the transition matrix $M$.  Initialize Transition Matrix $M$:$M$ is computed as $M = A D^{-1}$, with a complexity of $O(N^2)$.  Recursive Matrix Multiplication: The $t$-step transition matrix $M^t$ is computed recursively: $M^t = M \cdot M \cdot M \cdots \quad (t \text{ multiplications})$ Each matrix multiplication $M \cdot M$ has a complexity of $O(N^3)$ for a dense $N \times N$ matrix.
 
@@ -73,10 +73,10 @@ $p(0)$ is the initial probability distribution of the random walk, which is usua
 
 Pseudo-target labels $T$ are generated using the multi-step random walk results:
 
-![image-20241127172713811](2.assets/image-20241127172713811.png)
+<img src="./3.png" width="50%" />
 
 Where, $I$ is the identity matrix, ensuring self-loops are emphasized. $\alpha$ is a balancing parameter controlling the influence of random walks. Purpose: $T$ adjusts relationships between samples to reduce false negatives (within-cluster samples misclassified as negative) and false positives (between-cluster samples misclassified as positive). High-Order Neighbors: By incorporating $M^t$, the pseudo-labels capture high-order neighbor relationships. Constructing $T$ from $M^t$ requires $O(N^2)$, as it involves element-wise matrix operations.
 
 ### Total Complexity:
 
-![image-20241127172930397](2.assets/image-20241127172930397.png)
+<img src="./4.png" width="50%" />
