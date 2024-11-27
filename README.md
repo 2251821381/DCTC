@@ -28,6 +28,7 @@ This is consistent with our experience: when $\lambda$ is too small, the learnin
   <img src="./NMI1.png" width="48%" />
   <img src="./NMI2.png" width="48%" />
 </div>
+
 # More detailed implementation guidelines
 
 | Configure                    | Value      |
