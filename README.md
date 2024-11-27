@@ -16,5 +16,5 @@ Additionally, we set different values of $\lambda$ from \{1, 3, 5, 7, 9\}, and t
 3. Performance decreases when $\lambda$ becomes too large.
 
 This is consistent with our experience: when $\lambda$ is too small, the learning ability of the decoupled-level contrastive learning head is not fully utilized. On the other hand, when $\lambda$ is too large, the ability of cluster-level contrastive learning is inhibited, which reduces the clustering performance.
-<img src=.github/ACC1.png width=50% />  |  <img src=.github/ACC2.png width=50% />
-<img src=.github/NMI1.png width=50% />  |  <img src=.github/NMI2.png width=50% />
+<img src=./ACC1.png width=50% />  |  <img src=./ACC2.png width=50% />
+<img src=./NMI1.png width=50% />  |  <img src=./NMI2.png width=50% />
