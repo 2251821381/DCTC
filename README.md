@@ -39,5 +39,6 @@ This is consistent with our experience: when $\lambda$ is too small, the learnin
 
 The parameters of the target encoder are updated by Exponential Moving Average (EMA) of the online encoder. Formally, denoting the parameters of the online and target encoder as `θq(v)` and `θk(v)`, respectively. The target encoder is updated by the following formula:
 
+theta_k = m * theta_k + (1 - m) * theta_q
 where `m ∈ (0, 1]` is a fixed momentum coefficient during training. We set `m = 0.98` in our experiments.
 
